@@ -1,0 +1,30 @@
+{
+  "name": "CecataBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CECATA/discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CECATA/discord-bot/issues"
+  },
+  "homepage": "https://github.com/CECATA/discord-bot#readme",
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "dotenv": "^8.2.0"
+  }
+}
