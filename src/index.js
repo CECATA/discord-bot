@@ -23,7 +23,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (!msg.content.startsWith(prefix) || msg.author.bot) return;
 
-  const args = msg.content.slice(prefix.length).trim().split('/ +/');
+  const args = msg.content.slice(prefix.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
 
   const command = client.commands.get(commandName);
