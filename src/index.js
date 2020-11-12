@@ -16,6 +16,9 @@ for (const file of commandFiles) {
 }
 
 client.on('ready', () => {
+  client.user.setPresence({
+    activity: { name: `Listening to ${prefix}help` }
+  });
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
