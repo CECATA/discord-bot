@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  bot:
+    image: cecata-bot-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports: 
+      - 8080:8080
+    volumes:
+      - ./src:/usr/src/app/src
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
