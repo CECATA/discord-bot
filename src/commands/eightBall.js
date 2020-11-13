@@ -14,6 +14,7 @@ const responses = [
 
 module.exports = {
   name: '8ball',
+  aliases: ['8b', 'eithball'],
   description: 'Hace predicciones sobre el futuro',
   execute(msg, args) {
     if (args.length === 0) {
