@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
   name: 'archwiki',
+  aliases: ['aw', 'arch'],
   description: 'Search in the Arch Wiki',
   execute(msg, args) {
     if (args.lenght === 0) {
