@@ -1,7 +1,9 @@
 const axios = require('axios');
+const Discord = require('discord.js');
 
 module.exports = {
   name: 'archwiki',
+  aliases: ['aw', 'arch'],
   description: 'Search in the Arch Wiki',
   execute(msg, args) {
     if (args.lenght === 0) {
@@ -11,7 +13,12 @@ module.exports = {
     axios
       .get(url + args[0])
       .then(res => {
-        return msg.channel.send(url + args[0]);
+        const embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle(`ArchWiki: ${args[0].toUpperCase()}`)
+            .setURL(url + args[0])
+            .setDescription(url + args[0]);
+        return msg.channel.send(embed);
       })
       .catch(err => {
         url = `${url}?search=${args[0]}` 
