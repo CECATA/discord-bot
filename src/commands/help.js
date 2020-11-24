@@ -16,6 +16,7 @@ module.exports = {
     \`${prefix}joke <args: dark>\`: Busca bromas, cuidado con el modo \`dark\`.
     \`${prefix}ping\`: Pong!.
     \`${prefix}pong\`: Ping!.
+    \`${prefix}wikipedia\`: Busca en las páginas de Wikipedia.
     `
     return msg.channel.send(response);
   }
