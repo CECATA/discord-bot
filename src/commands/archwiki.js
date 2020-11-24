@@ -1,28 +1,27 @@
-const axios = require('axios');
+const Wikijs = require('wikijs').default;
 const Discord = require('discord.js');
+
+const url = 'https://wiki.archlinux.org/api.php';
+const wiki = Wikijs({ apiUrl: url, origin: null });
 
 module.exports = {
   name: 'archwiki',
   aliases: ['aw', 'arch'],
   description: 'Search in the Arch Wiki',
   execute(msg, args) {
-    if (args.lenght === 0) {
-      return msg.channel.send("No hubo una búsqueda\n<prefix>archwiki <argument>");
+    if (args.length === 0) {
+      return msg.channel.send('No hubo una búsqueda\n\`<prefix>\`archwiki <query>');
     }
-    let url = 'https://wiki.archlinux.org/index.php/'
-    axios
-      .get(url + args[0])
-      .then(res => {
-        const embed = new Discord.MessageEmbed()
-            .setColor('#0099ff')
-            .setTitle(`ArchWiki: ${args[0].toUpperCase()}`)
-            .setURL(url + args[0])
-            .setDescription(url + args[0]);
-        return msg.channel.send(embed);
+    wiki
+      .page(args.join('_'))
+      .then(page => {
+        const response = new Discord.MessageEmbed()
+          .setColor('#0099ff')
+          .setTitle(`ArchWiki: ${page.raw.title}`)
+          .setURL(page.raw.fullurl)
+          .setDescription(page.raw.fullurl);
+        return msg.channel.send(response)
       })
-      .catch(err => {
-        url = `${url}?search=${args[0]}` 
-        return msg.channel.send(url);
-      });
+      .catch(err => console.log(err));
   }
 }
