@@ -1,3 +1,6 @@
+import { Command } from '../interfaces/interfaces';
+
+
 const responses = [
   'Sí.',
   'Es cierto.',
@@ -12,7 +15,7 @@ const responses = [
   'Probablemente.'
 ]
 
-module.exports = {
+const command: Command = {
   name: '8ball',
   aliases: ['8b', 'eithball'],
   description: 'Hace predicciones sobre el futuro',
@@ -25,3 +28,5 @@ module.exports = {
     return msg.reply(res);
   }
 }
+
+export default command;
