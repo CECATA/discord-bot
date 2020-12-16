@@ -13,7 +13,7 @@ const commandFiles = fs.readdirSync(__dirname + '/commands')
     .filter(file => file.endsWith('.ts'));
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command: Command = require(`./commands/${file}`).default;
     client.commands.set(command.name, command);
 }
 
@@ -31,12 +31,16 @@ client.on('message', msg => {
     if (!msg.content.startsWith(config.prefix) || msg.author.bot) return;
 
     const args: string[] = msg.content.slice(config.prefix.length).trim().split(/ +/);
-    const commandName = args.shift()!.toLowerCase();
+    let commandName: string | undefined = args.shift();
+    if (!commandName) return;
 
-    const command: Command = client.commands.get(commandName)
+    commandName = commandName.toLowerCase();
+
+    const command: Command | undefined = client.commands.get(commandName)
         || client.commands.find((cmd): boolean => {
-            return cmd.aliases.includes(commandName)
-        }) as Command;
+            if (!commandName) return false;
+            return cmd.aliases.includes(commandName);
+        });
 
     if (!command) return;
 
