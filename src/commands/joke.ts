@@ -1,11 +1,15 @@
-const axios = require('axios');
+import axios from 'axios';
 
-module.exports = {
+import { Command } from '../interfaces/interfaces';
+
+
+const command: Command = {
   name: 'joke',
+  aliases: [],
   description: 'Retorna una broma como mensaje',
   execute(msg, args) {
     let url = '';
-    if (args[0] === 'dark') {
+    if (args[0] == 'dark') {
       url = 'https://sv443.net/jokeapi/v2/joke/Dark?blacklistFlags=nsfw,religious,political,racist,sexist' 
     } else {
       url = 'https://sv443.net/jokeapi/v2/joke/Programming,Miscellaneous,Spooky,Christmas?blacklistFlags=religious,racist,sexist,nsfw'
@@ -26,3 +30,5 @@ module.exports = {
       .catch(err => console.log(err));
   }
 }
+
+export default command;
